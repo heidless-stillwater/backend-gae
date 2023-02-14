@@ -1,26 +1,26 @@
-# base image  
-FROM python:3.8   
-# setup environment variable  
-ENV DockerHOME=/home/app/webapp  
+# For more information, please refer to https://aka.ms/vscode-docker-python
+FROM python:3.9-alpine3.13
 
-# set work directory  
-RUN mkdir -p $DockerHOME  
+EXPOSE 8000
 
-# where your code lives  
-WORKDIR $DockerHOME  
+# Keeps Python from generating .pyc files in the container
+ENV PYTHONDONTWRITEBYTECODE=1
 
-# set environment variables  
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1  
+# Turns off buffering for easier container logging
+ENV PYTHONUNBUFFERED=1
 
-# install dependencies  
-RUN pip install --upgrade pip  
+# Install pip requirements
+COPY requirements.txt .
+RUN python -m pip install -r requirements.txt
+ 
+WORKDIR /app
+COPY ./app /app
+RUN ls
 
-# copy whole project to your docker home directory. 
-COPY . $DockerHOME  
-# run this command to install all dependencies  
-RUN pip install -r requirements.txt  
-# port where the Django app runs  
-EXPOSE 8000  
-# start server  
-CMD python manage.py runserver
+# Creates a non-root user with an explicit UID and adds permission to access the /app folder
+# For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
+RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
+USER appuser
+
+# During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app.wsgi"]

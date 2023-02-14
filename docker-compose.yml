@@ -7,11 +7,13 @@ services:
       - POSTGRES_DB=hpfolio
       - POSTGRES_USER=heidless
       - POSTGRES_PASSWORD=havana11
-  web:
-    build: .
+  app:
+    build:
+      context: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/code
+      - ./app:/app
+      - ./static:/static
     ports:
       - "8000:8000"
     environment:
