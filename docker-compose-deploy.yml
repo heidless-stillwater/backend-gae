@@ -9,6 +9,8 @@ services:
     working_dir: /app
     environment:
       - CLOUDSDK_CONFIG=/creds
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
 volumes:
   gcp-creds:

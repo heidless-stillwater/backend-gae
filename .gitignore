@@ -1,8 +1,7 @@
 # project
 .git
 .gitignore
-venv/
-static/
+#static/
 
 # Django #
 *.log

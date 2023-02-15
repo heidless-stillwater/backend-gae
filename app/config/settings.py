@@ -9,21 +9,12 @@ environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-print("****************************")
-print("****** SETTINGS ***********")
-print("BASE_DIR:", BASE_DIR)
-print("SECRET_KEY:", env('SECRET_KEY'))
-print("DEBUG:", env('DEBUG'))
-print("****************************")
-print("****************************")
-
-
 SECRET_KEY = env('SECRET_KEY')
 
-print("DEBUG::", env('DEBUG'))
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+print(" ###############################n Actual DEBUG:" + str(DEBUG))
+
 ##if env('DEBUG') == True:
 #    print(f"###################### DEBUG:${DEBUG} ########################")
 #    DEBUG = True
@@ -116,12 +107,11 @@ DATABASES = {
         'PASSWORD': 'havana11',
         'HOST': 'host.docker.internal',
         #'HOST': 'localhost',
-        #'HOST': '172.17.0.2',
+        #'HOST': '172.20.0.2',
         'PORT': '', # leave blank so the default port is selected
 #        'PORT': '', # leave blank so the default port is selected
     }
 }
-
 
 #DATABASES = {
 #    'default': {
