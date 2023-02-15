@@ -23,9 +23,18 @@ SECRET_KEY = env('SECRET_KEY')
 print("DEBUG::", env('DEBUG'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = bool(int(os.environ.get('DEBUG',0)))
+DEBUG = True
+##if env('DEBUG') == True:
+#    print(f"###################### DEBUG:${DEBUG} ########################")
+#    DEBUG = True
+#else:
+#    print(f"################DEBUG = {$False}")
+    
+#print(f"##################### DEBUG set: ${DEBUG}")
+
+#DEBUG = bool(int(env('DEBUG',False)))
 #print("DEBUG::", env('DEBUG'))
-DEBUG=env('DEBUG')
+#DEBUG=env('DEBUG')
 
 #DEBUG = False
 
@@ -107,6 +116,7 @@ DATABASES = {
         'PASSWORD': 'havana11',
         'HOST': 'host.docker.internal',
         #'HOST': 'localhost',
+        #'HOST': '172.17.0.2',
         'PORT': '', # leave blank so the default port is selected
 #        'PORT': '', # leave blank so the default port is selected
     }
