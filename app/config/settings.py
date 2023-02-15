@@ -105,7 +105,8 @@ DATABASES = {
         'NAME': 'hpfolio',
         'USER': 'heidless',
         'PASSWORD': 'havana11',
-        'HOST': 'host.docker.internal',
+        #'HOST': 'host.docker.internal',
+        'HOST': '34.89.118.118',
         #'HOST': 'localhost',
         #'HOST': '172.20.0.2',
         'PORT': '', # leave blank so the default port is selected
